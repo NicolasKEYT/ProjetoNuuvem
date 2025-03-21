@@ -1,5 +1,4 @@
 # ProjetoNuuvem
-Senhor, Joaca PF ENTENDA. O FIM É TRISTE
 
 Link: http://localhost:8080/
 
