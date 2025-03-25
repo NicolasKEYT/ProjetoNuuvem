@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cachorro Motivacional</title>
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/616/616408.png" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        /* Global Styles */
         body {
             display: flex;
             flex-direction: column;
@@ -15,11 +18,12 @@
             width: 100vw;
             margin: 0;
             background: linear-gradient(135deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', Arial, sans-serif;
             text-align: center;
             color: #333;
         }
 
+        /* Header Styles */
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
@@ -27,24 +31,38 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        h3 {
-            font-size: 1.5rem;
-            margin-top: 15px;
-            color: #555;
-        }
-
-        img {
-            min-width: 500px;
-            min-height: 500px;
+        /* Image Styles */
+        #dogImage {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
             border-radius: 10px;
             box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
+            display: none; /* Hidden until loaded */
         }
 
-        img:hover {
+        #dogImage:hover {
             transform: scale(1.05);
         }
 
+        /* Spinner Styles */
+        #spinner {
+            border: 6px solid rgba(0, 0, 0, 0.1);
+            border-top: 6px solid #ffcc00;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Button Styles */
         button {
             padding: 12px 25px;
             margin-top: 20px;
@@ -67,23 +85,49 @@
     </style>
 </head>
 <body>
+    <!-- Page Title -->
     <h1>🐶🐾 Cachorro Motivacional 🐾🐶</h1>
-    <img id="capybaraImage" src="" alt="Capybara">
-    <br>
-    <h3>Seja feliz como um cachorro! 🐶</h3>
-    <button onclick="loadNewImage()"> Novo Cachorro 🐶 </button>
+
+    <!-- Dog Image -->
+    <img id="dogImage" src="" alt="Dog">
+
+    <!-- Loading Spinner -->
+    <div id="spinner"></div>
+
+    <!-- Button to Load New Image -->
+    <button onclick="loadNewImage()">Novo Cachorro 🐶</button>
 
     <script>
+        // Function to Load a New Dog Image
         function loadNewImage() {
-            fetch("http://localhost:8080/api/capybara")
+            const spinner = document.getElementById("spinner");
+            const dogImage = document.getElementById("dogImage");
+    
+            // Show spinner and hide image while loading
+            spinner.style.display = "block";
+            dogImage.style.display = "none";
+    
+            // Get the base URL dynamically
+            const baseUrl = window.location.port
+    ? `${window.location.protocol}//${window.location.hostname}:${window.location.port}`
+    : `${window.location.protocol}//${window.location.hostname}`;
+    
+            fetch(`${baseUrl}/api/dog`)
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById("capybaraImage").src = data.url;
+                    dogImage.src = data.url;
+                    dogImage.style.display = "block"; // Show image
+                    spinner.style.display = "none"; // Hide spinner
                 })
-                .catch(error => console.error("Erro ao carregar a imagem:", error));
-        }
+                .catch(error => {
+                    console.error("Erro ao carregar a imagem:", error);
+                    spinner.style.display = "none"; // Hide spinner on error
+                });
 
-        // Carrega a primeira imagem ao abrir a página
+                console.log("Fetching from URL:", `${baseUrl}/api/dog`);
+        }
+    
+        // Load the first image when the page loads
         loadNewImage();
     </script>
 </body>
