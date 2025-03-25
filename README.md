@@ -1,11 +1,9 @@
 # ProjetoNuuvem
-Link: http://localhost:8080/
 
 # Projeto de Implantação de Aplicação Web com Docker e AWS EC2
 
 ## Descrição  
 Neste projeto, você trabalhará individualmente ou em grupo (até 3 pessoas) para criar uma aplicação web com uma única tela e um back-end com pelo menos uma única rota que fornecerá os dados para a construção da página Web.  
-
 Deverás então empacotar estas aplicações em um container Docker e implantá-la em uma instância de máquina virtual (VM) na **AWS EC2** (use a disciplina de laboratório para evitar cobranças indesejadas).  
 
 A aplicação back-end deverá ser configurada para rodar na **porta 25.000** e a aplicação web na **porta 8080**. Para isso, será necessário configurar adequadamente:  
