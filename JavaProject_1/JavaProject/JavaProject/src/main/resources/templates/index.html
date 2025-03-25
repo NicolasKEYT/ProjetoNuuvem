@@ -102,12 +102,15 @@
         function loadNewImage() {
             const spinner = document.getElementById("spinner");
             const dogImage = document.getElementById("dogImage");
-
+    
             // Show spinner and hide image while loading
             spinner.style.display = "block";
             dogImage.style.display = "none";
-
-            fetch("http://localhost:8080/api/dog")
+    
+            // Get the base URL dynamically
+            const baseUrl = `${window.location.protocol}//${window.location.hostname}:8080`;
+    
+            fetch(`${baseUrl}/api/dog`)
                 .then(response => response.json())
                 .then(data => {
                     dogImage.src = data.url;
@@ -119,7 +122,7 @@
                     spinner.style.display = "none"; // Hide spinner on error
                 });
         }
-
+    
         // Load the first image when the page loads
         loadNewImage();
     </script>
