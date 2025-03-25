@@ -1,5 +1,4 @@
-FROM nginx:alpine
-COPY . /usr/share/nginx/html
+
 
 
 FROM openjdk:21-jdk-alpine
