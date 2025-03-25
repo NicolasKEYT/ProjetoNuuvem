@@ -1,16 +1,11 @@
+FROM alpine:latest
 
 
-
-FROM openjdk:21-jdk-alpine
-
+RUN apk add --no-cache openjdk21
 
 WORKDIR /app
-
-
 COPY target/JavaProject-0.0.1-SNAPSHOT.jar app.jar
 
-
-EXPOSE 8080
-
+EXPOSE 25000
 
 CMD ["java", "-jar", "app.jar"]
