@@ -108,7 +108,9 @@
             dogImage.style.display = "none";
     
             // Get the base URL dynamically
-            const baseUrl = `${window.location.protocol}//${window.location.hostname}:8080`;
+            const baseUrl = window.location.port
+    ? `${window.location.protocol}//${window.location.hostname}:${window.location.port}`
+    : `${window.location.protocol}//${window.location.hostname}`;
     
             fetch(`${baseUrl}/api/dog`)
                 .then(response => response.json())
@@ -121,6 +123,8 @@
                     console.error("Erro ao carregar a imagem:", error);
                     spinner.style.display = "none"; // Hide spinner on error
                 });
+
+                console.log("Fetching from URL:", `${baseUrl}/api/dog`);
         }
     
         // Load the first image when the page loads
