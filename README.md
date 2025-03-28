@@ -1,6 +1,7 @@
 # ProjetoNuuvem
 
-# Projeto de Implantação de Aplicação Web com Docker e AWS EC2
+# Projeto de Implantação de Aplicação Web com Docker e AWS EC2 
+Joaca, preste atenção. O FIM É TRISTE
 
 ## Descrição  
 Neste projeto, você trabalhará individualmente ou em grupo (até 3 pessoas) para criar uma aplicação web com uma única tela e um back-end com pelo menos uma única rota que fornecerá os dados para a construção da página Web.  
